@@ -1,0 +1,165 @@
+﻿@using BSISolutions.Models
+@model AccountModel
+@{
+    ViewData["Title"] = "Log in";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    body {
+        padding: 0;
+        background: #fff; /*overflow:hidden*/
+        position: relative;
+    }
+
+    footer {
+        text-align: center;
+        display: none;
+    }
+
+    .login-form {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 30px;
+        position: absolute;
+        right: 40%;
+        z-index: 99999;
+        top: 50px;
+        color: #434343;
+        border-radius: 20px;
+        margin-bottom: 34px;
+        background: #fff;
+        border: none;
+        box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.1);
+    }
+    .login-form .form-group {
+        margin-bottom: 35px;
+    }
+    .login-form h4 {
+        text-align: center;
+        font-size: 22px;
+        margin-bottom: 5px;
+    }
+    .login-form .form-control, .login-form .btn {
+        min-height: 40px;
+        border-radius: 0;
+        transition: all 0.5s;
+        max-width: 100%;
+    } 
+    .checkbox-inline, .radio-inline {
+        position: relative;
+        display: inline-block;
+        padding-left: 20px;
+        margin-bottom: 0;
+        font-weight: 400;
+        vertical-align: middle;
+        cursor: pointer;
+    }
+
+    .login-form .checkbox-inline {
+        float: left;
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 12px;
+    }
+
+    .login-form .forgot-link {
+        float: right;
+        color: #00aaef;
+        font-weight: 700;
+        font-size: 11px;
+        text-transform: uppercase;
+        margin: 2px 0 0;
+    }
+
+
+
+    .login-form .small {
+        font-size: 13px;
+        font-weight: 600;
+    }
+
+    .top-header .navbar.navbar-inverse {
+        display: none;
+    }
+
+    .container, .container-fluid {
+        width: 100%;
+        padding: 0;
+    }
+
+    strong.sign-txt a {
+        color: #00aaef;
+    }
+
+    /*18-08-2019*/
+
+    .red-bg {
+        height: 110vh;
+        position: relative;
+        background-image: url('../../Content/Images/businesswoman-using-digital-tablet-and-laptop-3T2D3B5.jpg');
+        padding: 0 20px;
+        background-position: top center;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+        .red-bg:after {
+            background: #333645;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            content: "";
+            top: 0;
+            z-index: 9999;
+            width: 25%;
+            opacity: 0.75;
+        }
+
+        .red-bg:before {
+            content: "";
+            background: #6f779e;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            opacity: 0.1;
+        }
+</style>
+<div class="row">
+    <div class="login-form">
+        <h4>Please log in.</h4>
+        <hr />
+        <section>
+            <form id="account" method="post">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Email"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password"></label>
+                    <input asp-for="Password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label asp-for="RememberMe">
+                            <input asp-for="RememberMe" />
+                            @Html.DisplayNameFor(m => m.RememberMe)
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Log in</button>
+                </div>
+            </form>
+        </section>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
