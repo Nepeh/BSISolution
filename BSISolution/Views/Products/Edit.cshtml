@@ -1,0 +1,80 @@
+﻿@model BSISolution.Models.Products
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>Products</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ProductId" />
+            <div class="form-group">
+                <label asp-for="ProductCode" class="control-label"></label>
+                <input asp-for="ProductCode" class="form-control" />
+                <span asp-validation-for="ProductCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductName" class="control-label"></label>
+                <input asp-for="ProductName" class="form-control" />
+                <span asp-validation-for="ProductName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CategoryId" class="control-label"></label>
+                <input asp-for="CategoryId" class="form-control" />
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductPrice" class="control-label"></label>
+                <input asp-for="ProductPrice" class="form-control" />
+                <span asp-validation-for="ProductPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ParVolume" class="control-label"></label>
+                <input asp-for="ParVolume" class="form-control" />
+                <span asp-validation-for="ParVolume" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UnitPerBox" class="control-label"></label>
+                <input asp-for="UnitPerBox" class="form-control" />
+                <span asp-validation-for="UnitPerBox" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ExpiratioDate" class="control-label"></label>
+                <input asp-for="ExpiratioDate" class="form-control" />
+                <span asp-validation-for="ExpiratioDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AvailibleBalance" class="control-label"></label>
+                <input asp-for="AvailibleBalance" class="form-control" />
+                <span asp-validation-for="AvailibleBalance" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RecordedBy" class="control-label"></label>
+                <input asp-for="RecordedBy" class="form-control" />
+                <span asp-validation-for="RecordedBy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateRecorded" class="control-label"></label>
+                <input asp-for="DateRecorded" class="form-control" />
+                <span asp-validation-for="DateRecorded" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,10 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
+﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
-using System;
 
-namespace BSISolution.Data.Migrations
+namespace BSISolution.Migrations
 {
-    public partial class CreateIdentitySchema : Migration
+    public partial class firstMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -40,7 +39,14 @@ namespace BSISolution.Data.Migrations
                     TwoFactorEnabled = table.Column<bool>(nullable: false),
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
-                    AccessFailedCount = table.Column<int>(nullable: false)
+                    AccessFailedCount = table.Column<int>(nullable: false),
+                    Discriminator = table.Column<string>(nullable: false),
+                    FirstName = table.Column<string>(nullable: true),
+                    MiddleName = table.Column<string>(nullable: true),
+                    LastName = table.Column<string>(nullable: true),
+                    IsActive = table.Column<bool>(nullable: true),
+                    RecordedBy = table.Column<string>(nullable: true),
+                    DateRecorded = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -48,11 +54,76 @@ namespace BSISolution.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Categories",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    RecordedBy = table.Column<string>(nullable: true),
+                    DateTime = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Categories", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "StatusTypes",
+                columns: table => new
+                {
+                    StatusTypeId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    RecordedBy = table.Column<string>(nullable: true),
+                    DateRecorded = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_StatusTypes", x => x.StatusTypeId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SystemRole",
+                columns: table => new
+                {
+                    RoleId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    IsActive = table.Column<bool>(nullable: false),
+                    RecordedBy = table.Column<string>(nullable: true),
+                    DateRecorded = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SystemRole", x => x.RoleId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserSystemRoles",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<string>(nullable: true),
+                    RoleID = table.Column<int>(nullable: false),
+                    RecordedBy = table.Column<string>(nullable: true),
+                    DateRecorded = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserSystemRoles", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     RoleId = table.Column<string>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true)
@@ -73,7 +144,7 @@ namespace BSISolution.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<string>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true)
@@ -153,6 +224,35 @@ namespace BSISolution.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Products",
+                columns: table => new
+                {
+                    ProductId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ProductCode = table.Column<string>(nullable: true),
+                    ProductName = table.Column<string>(nullable: true),
+                    ProductPrice = table.Column<double>(nullable: false),
+                    ParVolume = table.Column<int>(nullable: false),
+                    UnitPerBox = table.Column<int>(nullable: false),
+                    ExpiratioDate = table.Column<DateTime>(nullable: false),
+                    AvailibleBalance = table.Column<int>(nullable: false),
+                    RecordedBy = table.Column<string>(nullable: true),
+                    DateRecorded = table.Column<DateTime>(nullable: false),
+                    CategoryId = table.Column<int>(nullable: false),
+                    CategoriesId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Products", x => x.ProductId);
+                    table.ForeignKey(
+                        name: "FK_Products_Categories_CategoriesId",
+                        column: x => x.CategoriesId,
+                        principalTable: "Categories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -191,6 +291,11 @@ namespace BSISolution.Data.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Products_CategoriesId",
+                table: "Products",
+                column: "CategoriesId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -211,10 +316,25 @@ namespace BSISolution.Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Products");
+
+            migrationBuilder.DropTable(
+                name: "StatusTypes");
+
+            migrationBuilder.DropTable(
+                name: "SystemRole");
+
+            migrationBuilder.DropTable(
+                name: "UserSystemRoles");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Categories");
         }
     }
 }

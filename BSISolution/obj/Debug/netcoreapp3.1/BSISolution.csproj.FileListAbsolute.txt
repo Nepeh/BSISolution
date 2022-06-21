@@ -360,3 +360,8 @@ C:\BSIApps\BSISolution\obj\Debug\netcoreapp3.1\BSISolution.csproj.CopyComplete
 C:\BSIApps\BSISolution\obj\Debug\netcoreapp3.1\BSISolution.dll
 C:\BSIApps\BSISolution\obj\Debug\netcoreapp3.1\BSISolution.pdb
 C:\BSIApps\BSISolution\obj\Debug\netcoreapp3.1\BSISolution.genruntimeconfig.cache
+C:\BSIApps\BSISolution\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Product.cshtml.g.cs
+C:\BSIApps\BSISolution\obj\Debug\netcoreapp3.1\Razor\Views\Products\Create.cshtml.g.cs
+C:\BSIApps\BSISolution\obj\Debug\netcoreapp3.1\Razor\Views\Products\Delete.cshtml.g.cs
+C:\BSIApps\BSISolution\obj\Debug\netcoreapp3.1\Razor\Views\Products\Details.cshtml.g.cs
+C:\BSIApps\BSISolution\obj\Debug\netcoreapp3.1\Razor\Views\Products\Edit.cshtml.g.cs

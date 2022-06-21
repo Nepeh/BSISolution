@@ -18,5 +18,6 @@ namespace BSISolution.Data
         public DbSet<SystemRoles> SystemRole { get; set; }
         public DbSet<UserSystemRoles> UserSystemRoles  { get; set; }
         public DbSet<Products> Products { get; set; }
+        public DbSet<Categories> Categories { get; set; }
     }
 }

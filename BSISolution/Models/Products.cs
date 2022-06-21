@@ -12,7 +12,6 @@ namespace BSISolution.Models
         public int ProductId { get; set; }
         public string ProductCode { get; set; }
         public string ProductName { get; set; }
-        public int CategoryId { get; set; }
         public double ProductPrice { get; set; }
         public int ParVolume { get; set; }
         public int UnitPerBox { get; set; }
@@ -20,5 +19,8 @@ namespace BSISolution.Models
         public int AvailibleBalance { get; set; }
         public string RecordedBy { get; set; }
         public DateTime DateRecorded { get; set; }
+
+        public int CategoryId { get; set; }
+        public Categories Categories { get; set; }
     }
 }

@@ -7,21 +7,116 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace BSISolution.Data.Migrations
+namespace BSISolution.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20211112185348_SystemRoles")]
-    partial class SystemRoles
+    [Migration("20220621224922_firstMigration")]
+    partial class firstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.21")
+                .HasAnnotation("ProductVersion", "3.1.25")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("BSISolution.Models.Roles", b =>
+            modelBuilder.Entity("BSISolution.Models.Categories", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("DateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RecordedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("BSISolution.Models.Products", b =>
+                {
+                    b.Property<int>("ProductId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("AvailibleBalance")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CategoriesId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DateRecorded")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("ExpiratioDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ParVolume")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ProductCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProductName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("ProductPrice")
+                        .HasColumnType("float");
+
+                    b.Property<string>("RecordedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UnitPerBox")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProductId");
+
+                    b.HasIndex("CategoriesId");
+
+                    b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("BSISolution.Models.StatusTypes", b =>
+                {
+                    b.Property<int>("StatusTypeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("DateRecorded")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RecordedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("StatusTypeId");
+
+                    b.ToTable("StatusTypes");
+                });
+
+            modelBuilder.Entity("BSISolution.Models.SystemRoles", b =>
                 {
                     b.Property<int>("RoleId")
                         .ValueGeneratedOnAdd()
@@ -48,9 +143,9 @@ namespace BSISolution.Data.Migrations
                     b.ToTable("SystemRole");
                 });
 
-            modelBuilder.Entity("BSISolution.Models.StatusTypes", b =>
+            modelBuilder.Entity("BSISolution.Models.UserSystemRoles", b =>
                 {
-                    b.Property<int>("StatusTypeId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -58,18 +153,18 @@ namespace BSISolution.Data.Migrations
                     b.Property<DateTime>("DateRecorded")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("RecordedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("StatusTypeId");
+                    b.Property<int>("RoleID")
+                        .HasColumnType("int");
 
-                    b.ToTable("StatusTypes");
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UserSystemRoles");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -301,6 +396,13 @@ namespace BSISolution.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasDiscriminator().HasValue("ApplicationUser");
+                });
+
+            modelBuilder.Entity("BSISolution.Models.Products", b =>
+                {
+                    b.HasOne("BSISolution.Models.Categories", "Categories")
+                        .WithMany()
+                        .HasForeignKey("CategoriesId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
