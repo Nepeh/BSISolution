@@ -313,7 +313,6 @@ C:\BSIApps\BSISolution\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
 C:\BSIApps\BSISolution\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\BSIApps\BSISolution\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\BSIApps\BSISolution\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-C:\BSIApps\BSISolution\obj\Debug\netcoreapp3.1\BSISolution.csproj.AssemblyReference.cache
 C:\BSIApps\BSISolution\obj\Debug\netcoreapp3.1\BSISolution.GeneratedMSBuildEditorConfig.editorconfig
 C:\BSIApps\BSISolution\obj\Debug\netcoreapp3.1\BSISolution.AssemblyInfoInputs.cache
 C:\BSIApps\BSISolution\obj\Debug\netcoreapp3.1\BSISolution.AssemblyInfo.cs
@@ -344,12 +343,17 @@ C:\BSIApps\BSISolution\obj\Debug\netcoreapp3.1\Razor\Views\Account\UserList.csht
 C:\BSIApps\BSISolution\obj\Debug\netcoreapp3.1\Razor\Views\Account\_EditUserPartial.cshtml.g.cs
 C:\BSIApps\BSISolution\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
 C:\BSIApps\BSISolution\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
+C:\BSIApps\BSISolution\obj\Debug\netcoreapp3.1\Razor\Views\Products\Create.cshtml.g.cs
+C:\BSIApps\BSISolution\obj\Debug\netcoreapp3.1\Razor\Views\Products\Delete.cshtml.g.cs
+C:\BSIApps\BSISolution\obj\Debug\netcoreapp3.1\Razor\Views\Products\Details.cshtml.g.cs
+C:\BSIApps\BSISolution\obj\Debug\netcoreapp3.1\Razor\Views\Products\Edit.cshtml.g.cs
 C:\BSIApps\BSISolution\obj\Debug\netcoreapp3.1\Razor\Views\Products\Index.cshtml.g.cs
 C:\BSIApps\BSISolution\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
 C:\BSIApps\BSISolution\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Admin.cshtml.g.cs
 C:\BSIApps\BSISolution\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
 C:\BSIApps\BSISolution\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Login.cshtml.g.cs
 C:\BSIApps\BSISolution\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_LoginPartial.cshtml.g.cs
+C:\BSIApps\BSISolution\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Product.cshtml.g.cs
 C:\BSIApps\BSISolution\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
 C:\BSIApps\BSISolution\obj\Debug\netcoreapp3.1\Razor\Views\_ViewImports.cshtml.g.cs
 C:\BSIApps\BSISolution\obj\Debug\netcoreapp3.1\Razor\Views\_ViewStart.cshtml.g.cs
@@ -360,8 +364,4 @@ C:\BSIApps\BSISolution\obj\Debug\netcoreapp3.1\BSISolution.csproj.CopyComplete
 C:\BSIApps\BSISolution\obj\Debug\netcoreapp3.1\BSISolution.dll
 C:\BSIApps\BSISolution\obj\Debug\netcoreapp3.1\BSISolution.pdb
 C:\BSIApps\BSISolution\obj\Debug\netcoreapp3.1\BSISolution.genruntimeconfig.cache
-C:\BSIApps\BSISolution\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Product.cshtml.g.cs
-C:\BSIApps\BSISolution\obj\Debug\netcoreapp3.1\Razor\Views\Products\Create.cshtml.g.cs
-C:\BSIApps\BSISolution\obj\Debug\netcoreapp3.1\Razor\Views\Products\Delete.cshtml.g.cs
-C:\BSIApps\BSISolution\obj\Debug\netcoreapp3.1\Razor\Views\Products\Details.cshtml.g.cs
-C:\BSIApps\BSISolution\obj\Debug\netcoreapp3.1\Razor\Views\Products\Edit.cshtml.g.cs
+C:\BSIApps\BSISolution\obj\Debug\netcoreapp3.1\BSISolution.csproj.AssemblyReference.cache
