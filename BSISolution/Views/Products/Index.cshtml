@@ -4,7 +4,17 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Admin.cshtml";
 }
-
+<style>
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        /* display: none; <- Crashes Chrome on hover */
+        -webkit-appearance: none;
+        margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+    }
+    input[type=number] {
+        -moz-appearance: textfield; /* Firefox */
+    }
+</style>
 <div id="placeHolder"></div>
 <div class="row">
     <div class="col-12 ">
@@ -21,7 +31,7 @@
                             <button class="btn ml-2 p-0"
                                     id="kt_notes_panel_toggle" data-toggle="tooltip" title="" data-placement="right"
                                     data-original-title="Check out more demos">
-                                <span class="bg-secondary font-size-h5 w-70px d-flex align-items-center justify-content-center rounded-top shadow-sm ">
+                                <span class="bg-secondary font-size-h5 w-70px d-flex align-items-center justify-content-center rounded-lg shadow-sm ">
                                     New Product
                                 </span>
                             </button>
@@ -134,49 +144,53 @@
     </div>
     @*@using (Html.BeginForm("AddUser", "Account", FormMethod.Post))
         {*@
-    <form id="myform" method="post">
-        <div class="row">
-            <div class="col-12">
-                <div class="form-group">
-                    <label class="text-dark">First Name</label>
-                    <input id="FirstName" type="text" name="FirstName" class="form-control">
-                    <small class="form-text text-muted">please enter First Name</small>
-                </div>
-
-                <div class="form-group">
-                    <label class="text-dark">Middle Name</label>
-                    <input type="text" id="MiddleName" name="MiddleName" class="form-control">
-                    <small class="form-text text-muted">please enter Middle Name</small>
-                </div>
-
-                <div class="form-group">
-                    <label class="text-dark">Last Name</label>
-                    <input type="text" id="LastName" name="LastName" class="form-control" required="required">
-                    <small class="form-text text-muted">please enter Last Name</small>
-                </div>
-                <div class="form-group">
-                    <label class="text-dark">Password</label>
-                    <input type="password" id="Password" name="Password" class="form-control" required="required">
-                    <small class="form-text text-muted">please enter password</small>
-                </div>
-                @*<div class="form-group">
-                        <label class="text-dark">Role</label>
-                        @Html.DropDownList("RoleList", null, "Select")
-                    </div>*@
-                <div class="form-group">
-                    <label class="text-dark">Email</label>
-                    <input type="email" id="Email" name="Email" class="form-control" required="required">
-                    <small class="form-text text-muted">please enter Email</small>
-                </div>
-                <div class="form-group">
-                    <label class="text-dark">Phone Number</label>
-                    <input type="tel" id="Phone" name="Phone" class="form-control" required="required">
-                    <small class="form-text text-muted">please enter Phone Number</small>
-                </div>
+<form method="post">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label style="font-size:16px;" class="control-label text-dark">Product Code</label>
+                <input style="font-size:16px;" id="ProductCode" type="text" name="ProductCode" class="form-control" required />
+                <small class="form-text text-muted">please enter Product Code</small>
+            </div>
+            <div class="form-group">
+                <label style="font-size:16px;" class="control-label text-dark">Product Name</label>
+                <input style="font-size:16px;" id="ProductName" type="text" name="ProductName" class="form-control" required />
+                <small class="form-text text-muted">please enter Product Name</small>
+            </div>
+            <div class="form-group date" data-date-format="dd/mm/yyyy">
+                <label style="font-size:16px;" class="control-label text-dark">Category</label>
+                <input style="font-size:16px;" id="CategoryId" type="number" name="CategoryId" class="form-control" required />
+                <small class="form-text text-muted">please enter Product Category</small>
+            </div>
+            <div class="form-group">
+                <label style="font-size:16px;" class="control-label text-dark">Product Price</label>
+                <input style="font-size:16px;" id="ProductPrice" type="number" name="ProductPrice" class="form-control" required />
+                <small class="form-text text-muted">please enter Product Price</small>
+            </div>
+            <div class="form-group">
+                <label style="font-size:16px;" class="control-label text-dark">Par Volume</label>
+                <input style="font-size:16px;" id="ParVolume" type="number" name="ParVolume" class="form-control" required />
+                <small class="form-text text-muted">please enter Product Par Volume</small>
+            </div>
+            <div class="form-group">
+                <label style="font-size:16px;" class="text-dark">Product Unit Per Box</label>
+                <input style="font-size:16px;" id="UnitPerBox" type="number" name="UnitPerBox" class="form-control" required />
+                <small class="form-text text-muted">please enter Product Unit Per Box</small>
+            </div>
+            <div class="form-group">
+                <label style="font-size:16px;" class="control-label text-dark">Product Expiratio Date</label>
+                <input style="font-size:16px;" id="ExpiratioDate" type="datetime" name="ExpiratioDate" class="form-control" required />
+                <small class="form-text text-muted">please enter Product Expiratio Date</small>
+            </div>
+            <div class="form-group">
+                <label style="font-size:16px;" class="control-label text-dark">Product Availible Balance</label>
+                <input style="font-size:16px;" id="AvailibleBalance" type="number" name="AvailibleBalance" class="form-control" required />
+                <small class="form-text text-muted">please enter Product Availible Balance</small>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary">Add User</button>
-    </form>
+    </div>
+    <button type="submit" class="btn btn-primary">Add Product</button>
+</form>
     @*}*@
 </div>
 

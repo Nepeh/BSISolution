@@ -20,10 +20,40 @@ namespace BSISolution.Controllers
         }
 
         // GET: Products1
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            return View(await _context.Products.ToListAsync());
+            var result = _context.Products.ToList();
+            return View(result);
         }
+        // POST: Product/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Index(string ProductCode, string ProductName, int CategoryId, int ProductPrice, int ParVolume, int UnitPerBox, DateTime ExpiratioDate, int AvailibleBalance)
+        {
+            if (ModelState.IsValid)
+            {
+                Products products = new Products()
+                {
+                    ProductCode = ProductCode,
+                    ProductName = ProductName,
+                    CategoryId = CategoryId,
+                    ProductPrice = ProductPrice,
+                    ParVolume = ParVolume,
+                    UnitPerBox = UnitPerBox,
+                    ExpiratioDate = ExpiratioDate,
+                    AvailibleBalance = AvailibleBalance
+                };
+                products.RecordedBy = User.Identity.Name;
+                products.DateRecorded = DateTime.Now;
+                _context.Add(products);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View();
+        }
+
 
         // GET: Products1/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -40,28 +70,6 @@ namespace BSISolution.Controllers
                 return NotFound();
             }
 
-            return View(products);
-        }
-
-        // GET: Products1/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Products1/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProductId,ProductCode,ProductName,CategoryId,ProductPrice,ParVolume,UnitPerBox,ExpiratioDate,AvailibleBalance,RecordedBy,DateRecorded")] Products products)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(products);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
             return View(products);
         }
 
